@@ -1,6 +1,6 @@
 const USD = document.querySelector('[data-value="USD"]');
 const EUR = document.querySelector('[data-value="EUR"]');
-const GPB = document.querySelector('[data-value="PLN"]');
+const PLN = document.querySelector('[data-value="PLN"]');
 
 const selectLeft = document.querySelector('#selectLeft');
 const selectRight = document.querySelector('#selectRight');
