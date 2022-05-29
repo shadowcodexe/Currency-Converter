@@ -8,21 +8,33 @@ const selectRight = document.querySelector('#selectRight');
 const inputLeft = document.querySelector('#inputLeft');
 const inputRight = document.querySelector('#inputRight');
 
-const rates = {};
+const rates = {}
+let ratesKeys;
 
 async function getCurrencies() {
 	const request = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
 	const data = await request.json();
 	const result = await data;
+	console.log(data)
 
-	rates.USD = result[25];
-	rates.EUR = result[32];
-	rates.PLN = result[33];
+	for (let i = 0; i < result.length; i++) {
+			rates[result[i].cc] = result[i]
+	}
+	ratesKeys = Object.keys(rates).sort()
 
 	USD.textContent = (rates.USD.rate).toFixed(2) + ' ₴';
 	EUR.textContent = (rates.EUR.rate).toFixed(2) + ' ₴';
 	PLN.textContent = (rates.PLN.rate).toFixed(2) + ' ₴';
 };
+
+selectRight.addEventListener('click', () => {
+	for (let i = 0; i < ratesKeys.length; i++) {
+		let newCurrency = document.createElement('option')
+		newCurrency.innerHTML = `${ratesKeys[i]} - ${rates[ratesKeys[i]].txt}`
+		newCurrency.value = ratesKeys[i]
+		selectRight.appendChild(newCurrency)
+	}
+})
 
 getCurrencies();
 
