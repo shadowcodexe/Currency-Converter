@@ -27,14 +27,18 @@ async function getCurrencies() {
 	PLN.textContent = (rates.PLN.rate).toFixed(2) + ' ₴';
 };
 
-selectRight.addEventListener('click', () => {
+function updateCurrenciesList() {
+
 	for (let i = 0; i < ratesKeys.length; i++) {
 		let newCurrency = document.createElement('option')
 		newCurrency.innerHTML = `${ratesKeys[i]} - ${rates[ratesKeys[i]].txt}`
 		newCurrency.value = ratesKeys[i]
 		selectRight.appendChild(newCurrency)
 	}
-})
+
+}
+
+setTimeout(updateCurrenciesList,100)
 
 getCurrencies();
 
