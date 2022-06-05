@@ -15,6 +15,7 @@ async function getCurrencies() {
 	const request = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
 	const data = await request.json();
 	const result = await data;
+
 	console.log(data)
 
 	for (let i = 0; i < result.length; i++) {
@@ -27,6 +28,8 @@ async function getCurrencies() {
 	PLN.textContent = (rates.PLN.rate).toFixed(2) + ' ₴';
 };
 
+getCurrencies();
+
 function updateCurrenciesList() {
 
 	for (let i = 0; i < ratesKeys.length; i++) {
@@ -38,9 +41,9 @@ function updateCurrenciesList() {
 
 }
 
-setTimeout(updateCurrenciesList,100)
+setTimeout(updateCurrenciesList,1000)
 
-getCurrencies();
+
 
 inputLeft.addEventListener('input',convertValueLeft);
 inputRight.addEventListener('input',convertValueRight);
@@ -152,5 +155,3 @@ function arrowUpRight() {
 
 selectLeft.addEventListener('click',arrowUpLeft);
 selectRight.addEventListener('click',arrowUpRight);
-
-
